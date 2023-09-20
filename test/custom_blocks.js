@@ -72,27 +72,24 @@ Blockly.JavaScript.forBlock['var'] = function(block) {
   var code = var_name;
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
-Blockly.Blocks['math_arithmetic'] = {
-  /**
-   * Block for arithmetic operations.
-   * @this {Blockly.Block}
-   */
+Blockly.Blocks['if_then_else'] = {
   init: function() {
-    this.setHelpUrl(Blockly.Msg.MATH_ARITHMETIC_HELPURL);
-    this.setColour(Blockly.Msg.MATH_HUE);
-    this.setOutput(true, 'Number');
-    this.appendValueInput('A')
-        .setCheck(['Number', 'var', 'exp']);
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([
-            ['+', 'ADD'],
-            ['-', 'MINUS'],
-            ['\u00D7', 'MULTIPLY'],
-            ['\u00F7', 'DIVIDE'],
-            ['^', 'POWER']]), 'OP');
-    this.appendValueInput('B')
-        .setCheck(['Number', 'var', 'exp']);
+    this.appendValueInput("EXPR1")
+        .setCheck(["var", "exp", "Number"])
+        .appendField("if");
+    this.appendValueInput("EXPR2")
+        .setCheck(["var", "exp", "Number"])
+        .appendField("=");
+    this.appendValueInput("THEN")
+        .setCheck(["var", "exp", "Number"])
+        .appendField("then");
+    this.appendValueInput("ELSE")
+        .setCheck(["var", "exp", "Number"])
+        .appendField("else");
     this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.MATH_ARITHMETIC_TOOLTIP);
+    this.setOutput(true, "exp");
+    this.setColour(230);
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
