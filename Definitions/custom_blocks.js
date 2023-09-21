@@ -1,3 +1,5 @@
+Blockly.HSV_SATURATION = 1;
+
 Blockly.Blocks['abs'] = {
   init: function() {
     this.appendValueInput("VAR")
@@ -31,7 +33,7 @@ Blockly.Blocks['app'] = {
 Blockly.Blocks['var'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("var")
+        .appendField("")
         .appendField(new Blockly.FieldTextInput("x"), "NAME");
     this.setOutput(true, "var");
     this.setColour(430);
@@ -91,6 +93,7 @@ Blockly.Blocks['named_func'] = {
     this.setHelpUrl("");
   }
 };
+
 Blockly.Blocks['functionDef'] = {
   init: function() {
     this.appendDummyInput()
@@ -100,7 +103,7 @@ Blockly.Blocks['functionDef'] = {
         .setCheck(["var", "exp", "Number"]);
     this.setInputsInline(true);
     this.setOutput(true, "exp");
-    this.setColour(20);
+    this.setColour(40);
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -112,11 +115,13 @@ Blockly.JavaScript['functionDef'] = function(block) {
   var code = 'const ' + func_name + ' = ' + expr_code + ';';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
 Blockly.Blocks['functionCall'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldTextInput("f"), "NAME");
-    this.setColour(20);
+    this.setOutput(true, "exp");
+    this.setColour(40);
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -124,6 +129,6 @@ Blockly.Blocks['functionCall'] = {
 
 Blockly.JavaScript['functionCall'] = function(block) {
   var func_name = block.getFieldValue('NAME');
-  var code = func_name + '()';
+  var code = func_name;
   return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
 };
