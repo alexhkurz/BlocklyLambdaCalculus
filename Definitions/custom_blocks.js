@@ -6,7 +6,8 @@ Blockly.Blocks['abs'] = {
         .setCheck("var")
         .appendField("λ");
     this.appendValueInput("EXPR")
-        .setCheck(["var", "exp", "Number"]);
+        .setCheck(["var", "exp", "Number"])
+        .appendField(".");
     this.setInputsInline(true);
     this.setOutput(true, "exp");
     this.setColour(130);
@@ -19,7 +20,6 @@ Blockly.Blocks['app'] = {
   init: function() {
     this.appendValueInput("EXPR1")
         .setCheck(["var", "exp", "Number"])
-        .appendField("app");
     this.appendValueInput("EXPR2")
         .setCheck(["var", "exp", "Number"]);
     this.setInputsInline(true);
