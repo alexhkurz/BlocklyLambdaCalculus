@@ -91,11 +91,11 @@ Blockly.Blocks['named_func'] = {
     this.setHelpUrl("");
   }
 };
-Blockly.Blocks['named_lambda'] = {
+Blockly.Blocks['functionDef'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("λ")
-        .appendField(new Blockly.FieldTextInput("f"), "NAME");
+        .appendField(new Blockly.FieldTextInput("f"), "NAME")
+        .appendField("=");
     this.appendValueInput("EXPR")
         .setCheck(["var", "exp", "Number"]);
     this.setInputsInline(true);
@@ -106,9 +106,9 @@ Blockly.Blocks['named_lambda'] = {
   }
 };
 
-Blockly.JavaScript['named_lambda'] = function(block) {
+Blockly.JavaScript['functionDef'] = function(block) {
   var func_name = block.getFieldValue('NAME');
   var expr_code = Blockly.JavaScript.valueToCode(block, 'EXPR', Blockly.JavaScript.ORDER_NONE);
-  var code = 'var ' + func_name + ' = (' + expr_code + ');';
+  var code = 'var ' + func_name + ' = ' + expr_code + ';';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
