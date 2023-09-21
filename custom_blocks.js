@@ -2,7 +2,7 @@ Blockly.Blocks['abs'] = {
   init: function() {
     this.appendValueInput("VAR")
         .setCheck("var")
-        .appendField("λ");
+        .appendField("lam");
     this.appendValueInput("EXPR")
         .setCheck(["var", "exp", "Number"]);
     this.setInputsInline(true);
