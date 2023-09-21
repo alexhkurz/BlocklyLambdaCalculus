@@ -109,6 +109,6 @@ Blockly.Blocks['functionDef'] = {
 Blockly.JavaScript['functionDef'] = function(block) {
   var func_name = block.getFieldValue('NAME');
   var expr_code = Blockly.JavaScript.valueToCode(block, 'EXPR', Blockly.JavaScript.ORDER_NONE);
-  var code = 'var ' + func_name + ' = ' + expr_code + ';';
+  var code = 'const ' + func_name + ' = ' + expr_code + ';';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
