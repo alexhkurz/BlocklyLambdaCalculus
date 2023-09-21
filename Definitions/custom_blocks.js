@@ -41,6 +41,7 @@ Blockly.Blocks['var'] = {
     this.setHelpUrl("");
   }
 };
+
 Blockly.Blocks['math_number'] = {
   /**
    * Block for numeric value.
@@ -55,6 +56,7 @@ Blockly.Blocks['math_number'] = {
     this.setTooltip(Blockly.Msg.MATH_NUMBER_TOOLTIP);
   }
 };
+
 Blockly.JavaScript.forBlock['abs'] = function(block) {
   var var_name = Blockly.JavaScript.valueToCode(block, 'VAR', Blockly.JavaScript.ORDER_NONE);
   var expr_code = Blockly.JavaScript.valueToCode(block, 'EXPR', Blockly.JavaScript.ORDER_NONE);
@@ -74,11 +76,33 @@ Blockly.JavaScript.forBlock['var'] = function(block) {
   var code = var_name;
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
+
 Blockly.Blocks['math_arithmetic'] = {
-  // ... existing code ...
+  /**
+   * Block for arithmetic operations.
+   * @this {Blockly.Block}
+   */
+  init: function() {
+    this.setHelpUrl(Blockly.Msg.MATH_ARITHMETIC_HELPURL);
+    this.setColour(Blockly.Msg.MATH_HUE);
+    this.setOutput(true, 'Number');
+    this.appendValueInput('A')
+        .setCheck(['Number', 'var', 'exp']);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([
+            ['+', 'ADD'],
+            ['-', 'MINUS'],
+            ['\u00D7', 'MULTIPLY'],
+            ['\u00F7', 'DIVIDE'],
+            ['^', 'POWER']]), 'OP');
+    this.appendValueInput('B')
+        .setCheck(['Number', 'var', 'exp']);
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.MATH_ARITHMETIC_TOOLTIP);
+  }
 };
 
-Blockly.Blocks['named_func'] = {
+Blockly.Blocks['functionDef'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("function")
@@ -103,7 +127,7 @@ Blockly.Blocks['functionDef'] = {
         .setCheck(["var", "exp", "Number"]);
     this.setInputsInline(true);
     this.setOutput(true, "exp");
-    this.setColour(40);
+    this.setColour(48);
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -121,7 +145,7 @@ Blockly.Blocks['functionCall'] = {
     this.appendDummyInput()
         .appendField(new Blockly.FieldTextInput("f"), "NAME");
     this.setOutput(true, "exp");
-    this.setColour(40);
+    this.setColour(48);
     this.setTooltip("");
     this.setHelpUrl("");
   }
