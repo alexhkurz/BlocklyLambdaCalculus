@@ -105,22 +105,6 @@ Blockly.Blocks['math_arithmetic'] = {
 Blockly.Blocks['functionDef'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("function")
-        .appendField(new Blockly.FieldTextInput("f"), "NAME");
-    this.appendValueInput("FUNC")
-        .setCheck("exp")
-        .appendField("=");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(230);
-    this.setTooltip("");
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['functionDef'] = {
-  init: function() {
-    this.appendDummyInput()
         .appendField(new Blockly.FieldTextInput("f"), "NAME")
         .appendField("=");
     this.appendValueInput("EXPR")
@@ -136,7 +120,7 @@ Blockly.Blocks['functionDef'] = {
 Blockly.JavaScript['functionDef'] = function(block) {
   var func_name = block.getFieldValue('NAME');
   var expr_code = Blockly.JavaScript.valueToCode(block, 'EXPR', Blockly.JavaScript.ORDER_NONE);
-  var code = 'var ' + func_name + ' = ' + expr_code + ';';
+  var code = 'const ' + func_name + ' = ' + expr_code + ';';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
