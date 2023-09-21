@@ -112,3 +112,18 @@ Blockly.JavaScript['functionDef'] = function(block) {
   var code = 'const ' + func_name + ' = ' + expr_code + ';';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+Blockly.Blocks['functionCall'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("f"), "NAME");
+    this.setColour(20);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.JavaScript['functionCall'] = function(block) {
+  var func_name = block.getFieldValue('NAME');
+  var code = func_name + '()';
+  return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+};
