@@ -73,26 +73,21 @@ Blockly.JavaScript.forBlock['var'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 Blockly.Blocks['math_arithmetic'] = {
-  /**
-   * Block for arithmetic operations.
-   * @this {Blockly.Block}
-   */
+  // ... existing code ...
+};
+
+Blockly.Blocks['named_func'] = {
   init: function() {
-    this.setHelpUrl(Blockly.Msg.MATH_ARITHMETIC_HELPURL);
-    this.setColour(Blockly.Msg.MATH_HUE);
-    this.setOutput(true, 'Number');
-    this.appendValueInput('A')
-        .setCheck(['Number', 'var', 'exp']);
     this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([
-            ['+', 'ADD'],
-            ['-', 'MINUS'],
-            ['\u00D7', 'MULTIPLY'],
-            ['\u00F7', 'DIVIDE'],
-            ['^', 'POWER']]), 'OP');
-    this.appendValueInput('B')
-        .setCheck(['Number', 'var', 'exp']);
-    this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.MATH_ARITHMETIC_TOOLTIP);
+        .appendField("function")
+        .appendField(new Blockly.FieldTextInput("f"), "NAME");
+    this.appendValueInput("FUNC")
+        .setCheck("exp")
+        .appendField("=");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
