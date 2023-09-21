@@ -100,7 +100,7 @@ Blockly.Blocks['functionDef'] = {
         .setCheck(["var", "exp", "Number"]);
     this.setInputsInline(true);
     this.setOutput(true, "exp");
-    this.setColour(230);
+    this.setColour(30);
     this.setTooltip("");
     this.setHelpUrl("");
   }
