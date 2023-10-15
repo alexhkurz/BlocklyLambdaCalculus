@@ -111,14 +111,22 @@
             var urlParams = new URLSearchParams(window.location.search);
             var encodedXml = urlParams.get('blocks');
             if (encodedXml) {
-                var xmlText = atob(encodedXml);
-                var xml = Blockly.utils.xml.textToDom(xmlText);
-                Blockly.Xml.appendDomToWorkspace(xml, workspace);
+                try {
+                    var xmlText = atob(encodedXml);
+                    var xml = Blockly.utils.xml.textToDom(xmlText);
+                    Blockly.Xml.appendDomToWorkspace(xml, workspace);
+                } catch (e) {
+                    console.error('Error loading blocks from URL:', e);
+                    loadDefaultBlocks();
+                }
             } else {
-                // No blocks in URL, use defaultBlocks
-                var defaultBlocksDom = Blockly.utils.xml.textToDom(defaultBlocks);
-                Blockly.Xml.domToWorkspace(defaultBlocksDom, workspace);
+                loadDefaultBlocks();
             }
+        }
+
+        function loadDefaultBlocks() {
+            var defaultBlocksDom = Blockly.utils.xml.textToDom(defaultBlocks);
+            Blockly.Xml.domToWorkspace(defaultBlocksDom, workspace);
         }
 
     </script>
