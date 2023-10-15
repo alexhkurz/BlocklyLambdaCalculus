@@ -44,6 +44,10 @@
             scrollbars: true
         });
 
+        var defaultBlocks = '<xml xmlns="https://developers.google.com/blockly/xml"><block type="functionDef" x="10" y="10"></block></xml>';
+        var defaultBlocksDom = Blockly.utils.xml.textToDom(defaultBlocks);
+        Blockly.Xml.domToWorkspace(defaultBlocksDom, workspace);
+
         function generateCode() {
             var code = Blockly.JavaScript.workspaceToCode(workspace);
             document.getElementById('codeDiv').innerText = code;
