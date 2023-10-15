@@ -102,9 +102,13 @@
         function saveBlocksToURL() {
             var xml = Blockly.Xml.workspaceToDom(workspace);
             var xmlText = Blockly.Xml.domToPrettyText(xml);
-            var encodedXml = btoa(xmlText);
-            var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?blocks=' + encodedXml;
-            window.history.pushState({path:newUrl},'',newUrl);
+            try {
+                var encodedXml = btoa(xmlText);
+                var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?blocks=' + encodedXml;
+                window.history.pushState({path:newUrl},'',newUrl);
+            } catch (e) {
+                console.error('Error encoding blocks to URL:', e);
+            }
         }
 
         function loadBlocksFromURL() {
