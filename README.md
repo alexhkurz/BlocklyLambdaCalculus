@@ -10,4 +10,4 @@ The compiler uses JavaScript variables and functions to implement lambda calculu
 - `(\x.\y.x+y) 3`
 - `(\f.\x.f(f(x))) (\f.\x.(f(f(f x))))`
 
-[lc-with-definitions](https://alexhkurz.github.io/BlocklyLambdaCalculus/lc-with-definitions/) adds function definitions to make it easier to create slightly larger examples such as Church numerals.
+[lc-with-definitions](https://alexhkurz.github.io/BlocklyLambdaCalculus/lc-with-definitions/) adds function definitions to make it easier to create slightly larger examples such as Church numerals. I also added some helpful instructions for first time visitors and functionality for saving and loading blocks from a URL for ease of sharing examples.
