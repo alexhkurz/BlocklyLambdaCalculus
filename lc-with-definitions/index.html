@@ -38,6 +38,8 @@
         <button onclick="runCode()">Run JavaScript</button>
         <button onclick="saveBlocks()">Save Blocks</button>
         <button onclick="loadBlocks()">Load Blocks</button>
+        <button onclick="saveBlocksToURL()">Save Blocks to URL</button>
+        <button onclick="loadBlocksFromURL()">Load Blocks from URL</button>
         <input type="file" id="loadInput" style="display: none;" onchange="loadBlocksFile(event)">
     </div>
     <div class="row">
@@ -91,6 +93,24 @@
                 Blockly.Xml.appendDomToWorkspace(xml, workspace);
             };
             reader.readAsText(file);
+        }
+
+        function saveBlocksToURL() {
+            var xml = Blockly.Xml.workspaceToDom(workspace);
+            var xmlText = Blockly.Xml.domToPrettyText(xml);
+            var encodedXml = btoa(xmlText);
+            var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?blocks=' + encodedXml;
+            window.history.pushState({path:newUrl},'',newUrl);
+        }
+
+        function loadBlocksFromURL() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var encodedXml = urlParams.get('blocks');
+            if (encodedXml) {
+                var xmlText = atob(encodedXml);
+                var xml = Blockly.utils.xml.textToDom(xmlText);
+                Blockly.Xml.appendDomToWorkspace(xml, workspace);
+            }
         }
 
     </script>
