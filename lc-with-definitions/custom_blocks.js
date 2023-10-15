@@ -1,4 +1,4 @@
-Blockly.HSV_SATURATION = 1;
+Blockly.utils.colour.setHsvSaturation(1);
 
 Blockly.Blocks['abs'] = {
   init: function() {
