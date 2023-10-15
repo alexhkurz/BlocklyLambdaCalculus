@@ -103,7 +103,7 @@
             var xml = Blockly.Xml.workspaceToDom(workspace);
             var xmlText = Blockly.Xml.domToPrettyText(xml);
             try {
-                var encodedXml = btoa(xmlText);
+                var encodedXml = btoa(unescape(encodeURIComponent(xmlText)));
                 var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?blocks=' + encodedXml;
                 window.history.pushState({path:newUrl},'',newUrl);
             } catch (e) {
@@ -116,7 +116,7 @@
             var encodedXml = urlParams.get('blocks');
             if (encodedXml) {
                 try {
-                    var xmlText = atob(encodedXml);
+                    var xmlText = decodeURIComponent(escape(atob(encodedXml)));
                     var xml = Blockly.utils.xml.textToDom(xmlText);
                     Blockly.Xml.appendDomToWorkspace(xml, workspace);
                 } catch (e) {
