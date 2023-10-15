@@ -56,6 +56,9 @@
         var defaultBlocksDom = Blockly.utils.xml.textToDom(defaultBlocks);
         Blockly.Xml.domToWorkspace(defaultBlocksDom, workspace);
 
+        // Load blocks from URL if present
+        loadBlocksFromURL();
+
         function generateCode() {
             var code = Blockly.JavaScript.workspaceToCode(workspace);
             document.getElementById('codeDiv').innerText = code;
