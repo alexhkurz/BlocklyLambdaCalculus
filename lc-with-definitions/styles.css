@@ -9,6 +9,7 @@ body {
 
 /* Abstract styling away from body. Main container */
 #main_container {
+    height: 100%;
     flex: 1;
     /* Fill up parent container (assuming parent is flex)*/
     display: flex;
