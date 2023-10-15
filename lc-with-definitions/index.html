@@ -8,49 +8,53 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <div>
-        <a href="https://github.com/alexhkurz/BlocklyLambdaCalculus/tree/main/lc-with-definitions"target="_blank">
-        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"alt="GitHub Logo" width="20" height="20">
-        View Source on GitHub
-        </a>
-    </div>
-    <p>
-        <details>
-            <summary>Here for the first time?</summary>
-            <p> The default BlocklyLambda program you see below defines the (anonymous) function "plus  one" (`x` is mapped to `x+1`) and applies it to the number `2`. </p>
-            <p> "Generate JavaScript" compiles this to JavaScript (which is a programming language that     runs in your browser) and "Run JavaScript" executes it.</p>
-            <p> You can remove the default program by dragging it out of the workspace. You can write your  own program by dragging blocks from the toolbox to the workspace. You can save your program to   a file and load it from a file. </p>
-        </details>
-    </p>
-    <div class="row">
-        <div id="blocklyDiv" class="full-width"></div>
-        <xml id="toolbox" style="display: none">
-            <block type="functionDef"></block>
-            <block type="functionCall"></block>
-            <block type="abs"></block>
-            <block type="app"></block>
-            <block type="var"></block>
-            <block type="math_number"></block>
-            <block type="math_arithmetic"></block>
-        </xml>
-    </div>
-    <div class="row button-row">
-        <button onclick="generateCode()">Generate JavaScript</button>
-        <button onclick="runCode()">Run JavaScript</button>
-        <button onclick="saveBlocks()">Save Blocks</button>
-        <button onclick="loadBlocks()">Load Blocks</button>
-        <input type="file" id="loadInput" style="display: none;" onchange="loadBlocksFile(event)">
-    </div>
-    <div class="row">
-        <div id="codeDiv" class="half-width"></div>
-        <div id="outputDiv" class="half-width"></div>
+    <div id="main_container">
+        <div id="view_source">
+            <a href="https://github.com/alexhkurz/BlocklyLambdaCalculus/tree/main/lc-with-definitions"target="_blank">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"alt="GitHub Logo" width="20"    height="20">
+            View Source
+            </a>
+        </div>
+        <div id="instructions">
+            <p>
+                <details>
+                    <summary>Instructions</summary>
+                    <p> The default BlocklyLambda program you see below defines the (anonymous) function "plus  one" (x is mapped to x  +1)   and applies it to the number 2. </p>
+                    <p> "Generate JavaScript" compiles the program to JavaScript (which is a programming language that runs in  your     browser) and "Run JavaScript" executes it.</p>
+                    <p> You can remove a program by dragging it out of the workspace. You can write your  own program by dragging blocks from the toolbox to the workspace. </p>
+                    <p> You can save your program to a file and load one from a file.  </p>
+                </details>
+            </p>
+        </div>
+        <div id="workspace" class="row flex-between" style="flex-grow: 1;">
+            <div id="blocklyDiv" class="full-width"></div>
+            <xml id="toolbox" style="display: none">
+                <block type="functionDef"></block>
+                <block type="functionCall"></block>
+                <block type="abs"></block>
+                <block type="app"></block>
+                <block type="var"></block>
+                <block type="math_number"></block>
+                <block type="math_arithmetic"></block>
+            </xml>
+        </div>
+        <div id="buttons" class="button-row">
+            <button onclick="generateCode()">Generate JavaScript</button>
+            <button onclick="runCode()">Run JavaScript</button>
+            <button onclick="saveBlocks()">Save Blocks</button>
+            <button onclick="loadBlocks()">Load Blocks</button>
+            <input type="file" id="loadInput" style="display: none;" onchange="loadBlocksFile(event)">
+        </div>
+        <div id="output" class="row flex-between">
+            <div id="codeDiv" class="half-width"></div>
+            <div id="outputDiv" class="half-width"></div>
+        </div>
     </div>
     <script>
         var workspace = Blockly.inject('blocklyDiv', {
             toolbox: document.getElementById('toolbox'),
             scrollbars: true
         });
-
         // No changes here, use defaultBlocks directly
         var defaultBlocksDom = Blockly.utils.xml.textToDom(defaultBlocks);
         Blockly.Xml.domToWorkspace(defaultBlocksDom, workspace);
@@ -59,7 +63,6 @@
             var code = Blockly.JavaScript.workspaceToCode(workspace);
             document.getElementById('codeDiv').innerText = code;
         }
-
         function runCode() {
             var code = Blockly.JavaScript.workspaceToCode(workspace);
             try {
@@ -69,7 +72,6 @@
                 document.getElementById('outputDiv').innerText = 'Error: ' + e;
             }
         }
-
         function saveBlocks() {
             var xml = Blockly.Xml.workspaceToDom(workspace);
             var xmlText = Blockly.Xml.domToPrettyText(xml);
@@ -79,11 +81,9 @@
             a.href = URL.createObjectURL(blob);
             a.click();
         }
-
         function loadBlocks() {
             document.getElementById('loadInput').click();
         }
-
         function loadBlocksFile(event) {
             var file = event.target.files[0];
             var reader = new FileReader();
@@ -93,7 +93,6 @@
             };
             reader.readAsText(file);
         }
-
     </script>
 </body>
 </html>
