@@ -52,11 +52,7 @@
             scrollbars: true
         });
 
-        // No changes here, use defaultBlocks directly
-        var defaultBlocksDom = Blockly.utils.xml.textToDom(defaultBlocks);
-        Blockly.Xml.domToWorkspace(defaultBlocksDom, workspace);
-
-        // Load blocks from URL if present
+        // Load blocks from URL if present, else load default blocks
         loadBlocksFromURL();
 
         function generateCode() {
@@ -113,6 +109,10 @@
                 var xmlText = atob(encodedXml);
                 var xml = Blockly.utils.xml.textToDom(xmlText);
                 Blockly.Xml.appendDomToWorkspace(xml, workspace);
+            } else {
+                // No blocks in URL, use defaultBlocks
+                var defaultBlocksDom = Blockly.utils.xml.textToDom(defaultBlocks);
+                Blockly.Xml.domToWorkspace(defaultBlocksDom, workspace);
             }
         }
 
