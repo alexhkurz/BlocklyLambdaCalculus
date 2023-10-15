@@ -54,6 +54,9 @@
             scrollbars: true
         });
 
+        // Add event listener to workspace
+        workspace.addChangeListener(saveBlocksToURL);
+
         // Load blocks from URL if present, else load default blocks
         loadBlocksFromURL();
 
