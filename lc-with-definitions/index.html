@@ -4,7 +4,7 @@
     <title>A Blockly Lambda Calculus</title>
     <script src="https://unpkg.com/blockly/blockly.min.js"></script>
     <script src="custom_blocks.js"></script>
-    <script type="module" src="defaultBlocks.js"></script>
+    <script src="defaultBlocks.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
@@ -45,7 +45,7 @@
             scrollbars: true
         });
 
-        import defaultBlocks from './defaultBlocks.js';
+        // No changes here, use defaultBlocks directly
         var defaultBlocksDom = Blockly.utils.xml.textToDom(defaultBlocks);
         Blockly.Xml.domToWorkspace(defaultBlocksDom, workspace);
 
