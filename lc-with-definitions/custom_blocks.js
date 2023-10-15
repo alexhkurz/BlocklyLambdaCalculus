@@ -12,7 +12,7 @@ Blockly.Blocks['abs'] = {
     this.setOutput(true, "exp");
     this.setColour(130);
     this.setTooltip("");
-    this.setHelpUrl("");
+    this.setHelpUrl("https://en.wikipedia.org/wiki/Lambda_calculus");
   }
 };
 
