@@ -1,4 +1,3 @@
-/* Main container of content. <html> contains body and head only */
 body {
     height: 100vh;
     margin: 0;
@@ -7,17 +6,13 @@ body {
     flex-direction: column;
 }
 
-/* Abstract styling away from body. Main container */
 #main_container {
     height: 100%;
     flex: 1;
-    /* Fill up parent container (assuming parent is flex)*/
     display: flex;
-    /* A new independent flex container */
     flex-direction: column;
 }
 
-/* Semantically, row classes should specify height w/r to parent container */
 .row {
     height: fit-content;
 }
